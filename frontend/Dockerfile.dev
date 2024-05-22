@@ -1,0 +1,8 @@
+# dockerfile dev for nextjs
+
+FROM --platform=linux/amd64 node:20-alpine
+WORKDIR /app
+COPY package.json pnpm-lock.yaml ./
+RUN apk add --no-cache bash && npm install -g pnpm && pnpm install
+COPY . .
+CMD ["pnpm", "dev"]
